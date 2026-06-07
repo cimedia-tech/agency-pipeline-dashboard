@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Aether Pipeline - Agency Project Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Agency Header (Hidden on small mobile screens to save vertical space, shown on tablets+) -->
+  <header class="app-header">
+    <div class="header-logo">
+      <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+      <h1>Aether Pipeline</h1>
+    </div>
+    <div class="system-status">
+      <span class="status-pulse"></span>
+      <span class="status-text">Production Sync Active</span>
+    </div>
+  </header>
+
+  <!-- Metrics Grid (Bento widgets) -->
+  <section class="metrics-grid" id="metrics-panel">
+    <div class="metric-card" id="metric-active">
+      <div class="metric-header">
+        <span class="metric-title">Active Builds</span>
+        <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+          <line x1="8" y1="21" x2="16" y2="21"/>
+          <line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+      </div>
+      <div class="metric-value" id="val-active-count">0</div>
+      <div class="metric-trend" id="trend-active">Tracking active codebases</div>
+    </div>
+
+    <div class="metric-card" id="metric-revenue">
+      <div class="metric-header">
+        <span class="metric-title">Pipeline Value</span>
+        <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="12" y1="1" x2="12" y2="23"/>
+          <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+        </svg>
+      </div>
+      <div class="metric-value" id="val-pipeline-rev">$0</div>
+      <div class="metric-trend" id="trend-revenue">Estimated project value</div>
+    </div>
+
+    <div class="metric-card" id="metric-capacity">
+      <div class="metric-header">
+        <span class="metric-title">Engine Load</span>
+        <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+      </div>
+      <div class="metric-value" id="val-capacity-pct">0%</div>
+      <div class="metric-bar-container">
+        <div class="metric-bar" id="val-capacity-bar" style="width: 0%;"></div>
+      </div>
+    </div>
+
+    <div class="metric-card" id="metric-alerts">
+      <div class="metric-header">
+        <span class="metric-title">Attention Required</span>
+        <svg class="metric-icon icon-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+          <line x1="12" y1="9" x2="12" y2="13"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+      </div>
+      <div class="metric-value text-alert" id="val-alert-count">0</div>
+      <div class="metric-trend" id="trend-alerts">Blocked or critical states</div>
+    </div>
+  </section>
+
+  <!-- Main View Area -->
+  <main class="app-content">
+    
+    <!-- Tab 1: Kanban Board View (Default) -->
+    <section class="tab-view active" id="view-board">
+      <div class="view-header">
+        <h2>Development Pipeline</h2>
+        <div class="view-filters">
+          <button class="btn-filter active" data-filter="all">All</button>
+          <button class="btn-filter" data-filter="active">Active</button>
+          <button class="btn-filter" data-filter="production">Production</button>
+          <button class="btn-filter" data-filter="future">Proposed</button>
+        </div>
+      </div>
+
+      <!-- Kanban Column Container -->
+      <div class="kanban-container">
+        
+        <!-- Column 1: Proposal / Ideas -->
+        <div class="kanban-column" data-stage="proposal">
+          <div class="column-header">
+            <h3>💡 Proposal</h3>
+            <span class="column-count" id="count-proposal">0</span>
+          </div>
+          <div class="card-list" id="list-proposal"></div>
+        </div>
+
+        <!-- Column 2: Scoping / Design -->
+        <div class="kanban-column" data-stage="scoping">
+          <div class="column-header">
+            <h3>📐 Scoping</h3>
+            <span class="column-count" id="count-scoping">0</span>
+          </div>
+          <div class="card-list" id="list-scoping"></div>
+        </div>
+
+        <!-- Column 3: Active Build -->
+        <div class="kanban-column" data-stage="active">
+          <div class="column-header">
+            <h3>⚡ Active Build</h3>
+            <span class="column-count" id="count-active">0</span>
+          </div>
+          <div class="card-list" id="list-active"></div>
+        </div>
+
+        <!-- Column 4: QA / Review -->
+        <div class="kanban-column" data-stage="qa">
+          <div class="column-header">
+            <h3>🔍 QA Review</h3>
+            <span class="column-count" id="count-qa">0</span>
+          </div>
+          <div class="card-list" id="list-qa"></div>
+        </div>
+
+        <!-- Column 5: Deployed / Production -->
+        <div class="kanban-column" data-stage="deployed">
+          <div class="column-header">
+            <h3>🚀 Deployed</h3>
+            <span class="column-count" id="count-deployed">0</span>
+          </div>
+          <div class="card-list" id="list-deployed"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Tab 2: Add Project Form -->
+    <section class="tab-view" id="view-add">
+      <div class="form-container">
+        <h2>Register New Build</h2>
+        <p class="form-sub">Add a project from your filesystem to start tracking its build status and backlog.</p>
+        
+        <form id="project-form">
+          <div class="form-group">
+            <label for="proj-name">Project Name</label>
+            <input type="text" id="proj-name" required placeholder="e.g. christmas_gift_advisor">
+          </div>
+
+          <div class="form-group">
+            <label for="proj-path">Filesystem Absolute Path</label>
+            <input type="text" id="proj-path" required placeholder="e.g. C:\Users\Augustus\Downloads\christmas_gift_advisor">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="proj-status">Build Status</label>
+              <select id="proj-status">
+                <option value="proposal">Proposal / Idea</option>
+                <option value="scoping" selected>Scoping / Design</option>
+                <option value="active">Active Build</option>
+                <option value="qa">QA Review</option>
+                <option value="deployed">Deployed (Production)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="proj-value">Project Budget / Value</label>
+              <input type="number" id="proj-value" placeholder="e.g. 15000" min="0">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="proj-doc">Google Doc Information Link</label>
+            <input type="url" id="proj-doc" placeholder="https://docs.google.com/document/d/.../edit">
+          </div>
+
+          <div class="form-group">
+            <label for="proj-backlog">Initial Backlog Features (One per line)</label>
+            <textarea id="proj-backlog" rows="4" placeholder="Integrate payment gateway&#10;Optimize mobile navigation&#10;Add SVG icon assets"></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            Save Project to Pipeline
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Tab 3: Detailed Statistics -->
+    <section class="tab-view" id="view-stats">
+      <div class="stats-container">
+        <h2>Engine Statistics</h2>
+        
+        <div class="stats-grid">
+          <!-- Donut Chart Widget -->
+          <div class="chart-card">
+            <h3>Project Health Breakdown</h3>
+            <div class="donut-chart-container">
+              <div class="donut-chart" id="chart-health-donut"></div>
+              <div class="donut-center">
+                <span class="donut-val" id="chart-total-count">0</span>
+                <span class="donut-lbl">Projects</span>
+              </div>
+            </div>
+            <div class="chart-legend" id="health-legend">
+              <div class="legend-item"><span class="legend-dot dot-green"></span> Green (Good) <span class="legend-val" id="lbl-cnt-green">0</span></div>
+              <div class="legend-item"><span class="legend-dot dot-yellow"></span> Yellow (Needs Review) <span class="legend-val" id="lbl-cnt-yellow">0</span></div>
+              <div class="legend-item"><span class="legend-dot dot-red"></span> Red (Blocked) <span class="legend-val" id="lbl-cnt-red">0</span></div>
+            </div>
+          </div>
+
+          <!-- Bar Chart Widget -->
+          <div class="chart-card">
+            <h3>Stage Value Distribution</h3>
+            <div class="bar-chart-container" id="bar-chart-container">
+              <!-- Dynamically rendered bars -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Mobile Bottom Tab Navigation -->
+  <nav class="mobile-nav">
+    <button class="nav-item active" data-tab="view-board">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="3" width="7" height="9"/>
+        <rect x="14" y="3" width="7" height="5"/>
+        <rect x="14" y="12" width="7" height="9"/>
+        <rect x="3" y="16" width="7" height="5"/>
+      </svg>
+      <span>Pipeline</span>
+    </button>
+    <button class="nav-item" data-tab="view-add">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="12" y1="8" x2="12" y2="16"/>
+        <line x1="8" y1="12" x2="16" y2="12"/>
+      </svg>
+      <span>Add Build</span>
+    </button>
+    <button class="nav-item" data-tab="view-stats">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="20" x2="18" y2="10"/>
+        <line x1="12" y1="20" x2="12" y2="4"/>
+        <line x1="6" y1="20" x2="6" y2="14"/>
+      </svg>
+      <span>Stats</span>
+    </button>
+  </nav>
+
+  <!-- Bottom Drawer Sheet (Detail & Edit) -->
+  <div class="drawer-overlay" id="detail-drawer">
+    <div class="drawer-sheet">
+      <div class="drawer-drag-bar"></div>
+      
+      <div class="drawer-header">
+        <div class="drawer-title-group">
+          <h2 id="drawer-proj-name">Project Name</h2>
+          <span class="drawer-path" id="drawer-proj-path">C:\Users\Augustus\Downloads...</span>
+        </div>
+        <button class="btn-close-drawer" id="btn-close-drawer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="drawer-body">
+        
+        <!-- Details row -->
+        <div class="drawer-details-row">
+          <div class="detail-badge-group">
+            <label class="detail-label">Status</label>
+            <select id="edit-proj-status" class="select-badge">
+              <option value="proposal">Proposal</option>
+              <option value="scoping">Scoping</option>
+              <option value="active">Active Build</option>
+              <option value="qa">QA Review</option>
+              <option value="deployed">Deployed</option>
+            </select>
+          </div>
+
+          <div class="detail-badge-group">
+            <label class="detail-label">Health</label>
+            <select id="edit-proj-health" class="select-badge-health">
+              <option value="green">🟢 Green (Good)</option>
+              <option value="yellow">🟡 Yellow (Review)</option>
+              <option value="red">🔴 Red (Blocked)</option>
+            </select>
+          </div>
+
+          <div class="detail-badge-group">
+            <label class="detail-label">Budget</label>
+            <input type="number" id="edit-proj-value" class="input-badge-val" placeholder="$0">
+          </div>
+        </div>
+
+        <!-- External Google Docs Link -->
+        <div class="drawer-section">
+          <h3>Google Docs Info Link</h3>
+          <div class="doc-link-group">
+            <input type="url" id="edit-proj-doc" placeholder="Paste Google Doc link here">
+            <a href="#" target="_blank" class="btn-go-doc" id="btn-open-doc">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+              Open Link
+            </a>
+          </div>
+        </div>
+
+        <!-- Backlog list -->
+        <div class="drawer-section">
+          <div class="section-title-action">
+            <h3>Features to Consider</h3>
+            <button class="btn-add-backlog" id="btn-add-backlog-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+              Add Item
+            </button>
+          </div>
+          
+          <div class="backlog-entry-area" id="backlog-add-entry-row" style="display: none;">
+            <input type="text" id="new-backlog-text" placeholder="Type a feature to consider...">
+            <button class="btn-save-new-backlog" id="btn-save-new-backlog-item">Add</button>
+          </div>
+
+          <div class="backlog-items-list" id="backlog-items-container">
+            <!-- Dynamic task items -->
+          </div>
+        </div>
+
+        <!-- Delete Action -->
+        <div class="drawer-footer-actions">
+          <button class="btn-delete-project" id="btn-delete-project">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="3 6 5 6 21 6"/>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+              <line x1="10" y1="11" x2="10" y2="17"/>
+              <line x1="14" y1="11" x2="14" y2="17"/>
+            </svg>
+            Delete Project Build
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
