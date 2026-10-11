@@ -3,7 +3,7 @@ const DASHBOARD = Object.freeze({
     { label: "Revenue focus", value: "CathedralImage", detail: "One monetizable offer system", tone: "accent" },
     { label: "Keep active", value: "3 + 2", detail: "Core plus enablement cap", tone: "accent" },
     { label: "P1 posture", value: "Contained", detail: "2 remediated · 2 lifecycle-gated", tone: "accent" },
-    { label: "P2 quality wave", value: "Cimedia rebrand hardened", detail: "Intake boundary + metadata verified", tone: "accent" },
+    { label: "P2 quality wave", value: "VidMine audited", detail: "Build hardened · auth provider blocked", tone: "accent" },
     { label: "Idea runway", value: "Open", detail: "Capture without derailing delivery", tone: "accent" }
   ],
   revenue: [
@@ -17,7 +17,7 @@ const DASHBOARD = Object.freeze({
     { phase: "P0", title: "Credential rotation", detail: "Tavily and Gmail OAuth rotation are complete and verified; shared-history purge remains a separate decision.", status: "Contained", tone: "live" },
     { phase: "P1", title: "Public control surface", detail: "The dashboard is read-only and no longer exposes private filesystem paths, credentials, or editable operational data.", status: "Released", tone: "live" },
     { phase: "P1", title: "Deployment triage", detail: "Lead scraper and AI Chief of Staff are remediated; site-generation and source have no active alias or deployment. Archive remains owner-gated.", status: "Contained", tone: "live" },
-    { phase: "P2", title: "Portfolio quality", detail: "YouTube catalog and market research are verified; Cimedia Rebrand intake boundary, metadata, crawler files, security headers, and mobile layout are hardened. Return to inactive Vercel project records after this wave.", status: "Cimedia rebrand hardened", tone: "accent" }
+    { phase: "P2", title: "Portfolio quality", detail: "YouTube catalog, market research, and Cimedia Rebrand are verified. VidMine source, dependency, metadata, security-header, responsive, and recovery-copy checks passed, but its configured Supabase host does not resolve; restore the provider before treating authentication as complete.", status: "VidMine audited", tone: "accent" }
   ],
   triage: [
     { category: "Core", name: "CathedralImage", focus: "Primary ministry mini-site offer", score: 20, lane: "Keep", tone: "live", reason: "Direct revenue path, active production, and the main monetization objective." },
@@ -30,7 +30,7 @@ const DASHBOARD = Object.freeze({
     { category: "Asset", name: "CathedralImage market research", focus: "Research and proof asset", score: 11, lane: "Maintain", tone: "review", reason: "Supports the core offer as reference material, not as a separate product build." },
     { category: "Seasonal", name: "Holy Convocation itinerary", focus: "Event ministry asset", score: 10, lane: "Maintain", tone: "review", reason: "Keep through the event lifecycle, then archive with recovery retained." },
     { category: "Source matched", name: "Orbit Hub / link hub", focus: "Agency navigation", score: 10, lane: "Validate", tone: "review", reason: "Keep only one canonical agency hub; compare against the duplicate below." },
-    { category: "Source matched", name: "Vidmine", focus: "Media utility", score: 9, lane: "Validate", tone: "review", reason: "Source exists, but current usage and revenue contribution are not yet evidenced." },
+    { category: "Source matched", name: "Vidmine", focus: "Media utility", score: 9, lane: "Validate", tone: "review", reason: "Exact source exists and the build is hardened, but production authentication is blocked by a non-resolving Supabase host; restore the provider before further feature work." },
     { category: "Source matched", name: "Caldrive", focus: "Calendar utility", score: 9, lane: "Validate", tone: "review", reason: "Source exists, but current usage and ownership priority need confirmation." },
     { category: "Source matched", name: "Cimedia Rebrand", focus: "Brand project", score: 9, lane: "Maintain", tone: "live", reason: "Exact source recovered and hardened; retain as the CathedralImage positioning and revenue handoff surface." },
     { category: "Utility", name: "NC Real ID checklist", focus: "Standalone checklist", score: 8, lane: "Pause", tone: "planned", reason: "Working utility, but no current monetization or distribution evidence." },
@@ -56,7 +56,7 @@ const DASHBOARD = Object.freeze({
     { name: "Control center", status: "Live", tone: "live", next: "Live on Vercel; triage view now shows the recommended keep, maintain, pause, and archive-gate lanes.", links: [] },
     { name: "Workspace security", status: "Contained", tone: "live", next: "Tavily and Gmail OAuth rotation are verified. Defer shared-history rewrite until separately approved.", links: [] },
     { name: "P1 deployment review", status: "Contained", tone: "live", next: "Public runtime risk is contained. Preserve site-generation and source records; return to the Vercel project records after the P2 quality wave, then archive only after explicit owner approval and rollback confirmation.", links: [] },
-    { name: "P2 quality wave", status: "Cimedia rebrand hardened", tone: "live", next: "Cimedia Rebrand passed source, build, production metadata, security headers, mobile layout, runtime, and CTA handoff checks. Continue the remaining P2 queue; return to inactive Vercel project records after the wave.", links: [{ label: "Open catalog", href: "https://youtube-subscription-catalog.vercel.app/" }, { label: "Open market research", href: "https://cathedralimage-market-research.vercel.app/" }, { label: "Open Cimedia Rebrand", href: "https://cimedia-rebrand.vercel.app/" }] },
+    { name: "P2 quality wave", status: "VidMine audited", tone: "review", next: "VidMine source, clean remote build, production metadata, security headers, responsive behavior, and auth recovery state passed. Authentication remains blocked because the configured Supabase host does not resolve; restore or replace that provider configuration before advancing this project. Keep CathedralImage as the monetization focus and return to inactive Vercel records after the P2 wave.", links: [{ label: "Open catalog", href: "https://youtube-subscription-catalog.vercel.app/" }, { label: "Open market research", href: "https://cathedralimage-market-research.vercel.app/" }, { label: "Open Cimedia Rebrand", href: "https://cimedia-rebrand.vercel.app/" }, { label: "Open VidMine", href: "https://vidmine.vercel.app/" }] },
     { name: "New ideas", status: "Open runway", tone: "planned", next: "Capture ideas in the pipeline, then advance only the ones with a clear user, evidence, V1, and revenue or strategic case.", links: [{ label: "Idea lab", href: "https://idea-forge-wheat.vercel.app/" }] }
   ]
 });
