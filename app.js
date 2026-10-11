@@ -2,7 +2,7 @@ const DASHBOARD = Object.freeze({
   metrics: [
     { label: "Revenue focus", value: "CathedralImage", detail: "One monetizable offer system", tone: "accent" },
     { label: "Keep active", value: "3 + 2", detail: "Core plus enablement cap", tone: "accent" },
-    { label: "P1 posture", value: "2 / 4", detail: "Remediated · two source gates", tone: "warning" },
+    { label: "P1 posture", value: "Contained", detail: "2 remediated · 2 lifecycle-gated", tone: "accent" },
     { label: "P2 quality wave", value: "Active", detail: "Intake + IdeaForge verified", tone: "accent" },
     { label: "Idea runway", value: "Open", detail: "Capture without derailing delivery", tone: "accent" }
   ],
@@ -16,7 +16,7 @@ const DASHBOARD = Object.freeze({
   cleanup: [
     { phase: "P0", title: "Credential rotation", detail: "Tavily and Gmail OAuth rotation are complete and verified; shared-history purge remains a separate decision.", status: "Contained", tone: "live" },
     { phase: "P1", title: "Public control surface", detail: "The dashboard is read-only and no longer exposes private filesystem paths, credentials, or editable operational data.", status: "Released", tone: "live" },
-    { phase: "P1", title: "Deployment triage", detail: "Lead scraper and AI Chief of Staff are contained; site-generation and source remain owner/source gates.", status: "2 of 4 fixed", tone: "critical" },
+    { phase: "P1", title: "Deployment triage", detail: "Lead scraper and AI Chief of Staff are remediated; site-generation and source have no active alias or deployment. Archive remains owner-gated.", status: "Contained", tone: "live" },
     { phase: "P2", title: "Portfolio quality", detail: "Client-intake and IdeaForge hardening are verified; remaining projects follow by evidence and score.", status: "In progress", tone: "accent" }
   ],
   triage: [
@@ -40,8 +40,8 @@ const DASHBOARD = Object.freeze({
     { category: "Campaign", name: "Lead scraper report", focus: "Public research brief", score: 9, lane: "Maintain", tone: "review", reason: "Now publication-safe; activate only for a defined acquisition campaign." },
     { category: "Duplicate", name: "Agency Linktree", focus: "Likely duplicate agency hub", score: 4, lane: "Consolidate", tone: "critical", reason: "Likely overlaps Orbit Hub; choose one canonical destination before more work." },
     { category: "Unfinished", name: "Site", focus: "SanctuaryStudio-style landing page", score: 4, lane: "Pause", tone: "critical", reason: "Incomplete legal links, zero proof metrics, and mailto-only conversion path." },
-    { category: "Orphaned", name: "Site-generation", focus: "Unavailable deployment", score: 2, lane: "Archive gate", tone: "critical", reason: "Vercel 404 with no exact source; preserve until ownership is confirmed." },
-    { category: "Broken", name: "Source", focus: "Broken public shell", score: 2, lane: "Archive gate", tone: "critical", reason: "Root shell loads but its script is missing; no exact source match found." },
+    { category: "Orphaned", name: "Site-generation", focus: "Unmapped Vercel project", score: 2, lane: "Archive gate", tone: "review", reason: "No alias, latest deployment, or production URL remains; no exact source match. Preserve until the owner approves archival." },
+    { category: "Unmapped", name: "Source", focus: "Unmapped Vercel project", score: 2, lane: "Archive gate", tone: "review", reason: "No alias, latest deployment, or production URL remains. source.vercel.app is unrelated to this team; no exact source match. Preserve until owner approval." },
     { category: "Sensitive", name: "AI Chief of Staff", focus: "Institutional FX/AI report", score: 4, lane: "Archive gate", tone: "critical", reason: "Public content is gated; no connected Git source and no active product case." }
   ],
   ideas: [
@@ -55,7 +55,7 @@ const DASHBOARD = Object.freeze({
     { name: "CathedralImage mini-sites", status: "Revenue focus", tone: "live", next: "Confirm offer terms and configure payment products only after pricing and production credentials are intentionally approved.", links: [{ label: "Production site", href: "https://www.cathedralimage.com/" }, { label: "Request flow", href: "https://www.cathedralimage.com/start.html" }] },
     { name: "Control center", status: "Live", tone: "live", next: "Live on Vercel; triage view now shows the recommended keep, maintain, pause, and archive-gate lanes.", links: [] },
     { name: "Workspace security", status: "Contained", tone: "live", next: "Tavily and Gmail OAuth rotation are verified. Defer shared-history rewrite until separately approved.", links: [] },
-    { name: "P1 deployment review", status: "2 of 4 fixed", tone: "critical", next: "Obtain source/owner confirmation for site-generation and source before any archive action.", links: [] },
+    { name: "P1 deployment review", status: "Contained", tone: "live", next: "Public runtime risk is contained. Preserve site-generation and source records, then archive only after explicit owner approval and rollback confirmation.", links: [] },
     { name: "New ideas", status: "Open runway", tone: "planned", next: "Capture ideas in the pipeline, then advance only the ones with a clear user, evidence, V1, and revenue or strategic case.", links: [{ label: "Idea lab", href: "https://idea-forge-wheat.vercel.app/" }] }
   ]
 });
