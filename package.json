@@ -1,0 +1,7 @@
+{
+  "name": "anti-mediacreator-control-center",
+  "private": true,
+  "scripts": {
+    "test": "node --check app.js"
+  }
+}
