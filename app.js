@@ -3,7 +3,7 @@ const DASHBOARD = Object.freeze({
     { label: "Revenue focus", value: "CathedralImage", detail: "One monetizable offer system", tone: "accent" },
     { label: "Keep active", value: "3 + 2", detail: "Core plus enablement cap", tone: "accent" },
     { label: "P1 posture", value: "Contained", detail: "2 remediated · 2 lifecycle-gated", tone: "accent" },
-    { label: "P2 quality wave", value: "Market research assessed", detail: "Deck verified · metadata source-gated", tone: "accent" },
+    { label: "P2 quality wave", value: "Cimedia rebrand hardened", detail: "Intake boundary + metadata verified", tone: "accent" },
     { label: "Idea runway", value: "Open", detail: "Capture without derailing delivery", tone: "accent" }
   ],
   revenue: [
@@ -17,7 +17,7 @@ const DASHBOARD = Object.freeze({
     { phase: "P0", title: "Credential rotation", detail: "Tavily and Gmail OAuth rotation are complete and verified; shared-history purge remains a separate decision.", status: "Contained", tone: "live" },
     { phase: "P1", title: "Public control surface", detail: "The dashboard is read-only and no longer exposes private filesystem paths, credentials, or editable operational data.", status: "Released", tone: "live" },
     { phase: "P1", title: "Deployment triage", detail: "Lead scraper and AI Chief of Staff are remediated; site-generation and source have no active alias or deployment. Archive remains owner-gated.", status: "Contained", tone: "live" },
-    { phase: "P2", title: "Portfolio quality", detail: "YouTube catalog is verified; CathedralImage market research is usable but metadata hardening is source-gated. Return to inactive Vercel project records after this wave.", status: "Market research assessed", tone: "accent" }
+    { phase: "P2", title: "Portfolio quality", detail: "YouTube catalog and market research are verified; Cimedia Rebrand intake boundary, metadata, crawler files, security headers, and mobile layout are hardened. Return to inactive Vercel project records after this wave.", status: "Cimedia rebrand hardened", tone: "accent" }
   ],
   triage: [
     { category: "Core", name: "CathedralImage", focus: "Primary ministry mini-site offer", score: 20, lane: "Keep", tone: "live", reason: "Direct revenue path, active production, and the main monetization objective." },
@@ -32,7 +32,7 @@ const DASHBOARD = Object.freeze({
     { category: "Source matched", name: "Orbit Hub / link hub", focus: "Agency navigation", score: 10, lane: "Validate", tone: "review", reason: "Keep only one canonical agency hub; compare against the duplicate below." },
     { category: "Source matched", name: "Vidmine", focus: "Media utility", score: 9, lane: "Validate", tone: "review", reason: "Source exists, but current usage and revenue contribution are not yet evidenced." },
     { category: "Source matched", name: "Caldrive", focus: "Calendar utility", score: 9, lane: "Validate", tone: "review", reason: "Source exists, but current usage and ownership priority need confirmation." },
-    { category: "Source matched", name: "Cimedia Rebrand", focus: "Brand project", score: 9, lane: "Validate", tone: "review", reason: "Retain if it supports current positioning; otherwise move to reference status." },
+    { category: "Source matched", name: "Cimedia Rebrand", focus: "Brand project", score: 9, lane: "Maintain", tone: "live", reason: "Exact source recovered and hardened; retain as the CathedralImage positioning and revenue handoff surface." },
     { category: "Utility", name: "NC Real ID checklist", focus: "Standalone checklist", score: 8, lane: "Pause", tone: "planned", reason: "Working utility, but no current monetization or distribution evidence." },
     { category: "Utility", name: "Anti-mediacreator dashboard", focus: "Private digest/dashboard", score: 8, lane: "Pause", tone: "planned", reason: "Public auth gate exists, but source and owner identity remain ambiguous." },
     { category: "Snapshot", name: "Catalog-build", focus: "Snapshot-backed catalog", score: 7, lane: "Pause", tone: "planned", reason: "Useful only if the live data feed is needed; otherwise consolidate with the catalog asset." },
@@ -56,7 +56,7 @@ const DASHBOARD = Object.freeze({
     { name: "Control center", status: "Live", tone: "live", next: "Live on Vercel; triage view now shows the recommended keep, maintain, pause, and archive-gate lanes.", links: [] },
     { name: "Workspace security", status: "Contained", tone: "live", next: "Tavily and Gmail OAuth rotation are verified. Defer shared-history rewrite until separately approved.", links: [] },
     { name: "P1 deployment review", status: "Contained", tone: "live", next: "Public runtime risk is contained. Preserve site-generation and source records; return to the Vercel project records after the P2 quality wave, then archive only after explicit owner approval and rollback confirmation.", links: [] },
-    { name: "P2 quality wave", status: "Market research assessed", tone: "review", next: "CathedralImage market research passed live slide navigation, pause/play, responsive, content, 404, and runtime checks. SEO metadata hardening is source-gated until the production-only Vercel source is recovered; continue the remaining P2 queue next.", links: [{ label: "Open catalog", href: "https://youtube-subscription-catalog.vercel.app/" }, { label: "Open market research", href: "https://cathedralimage-market-research.vercel.app/" }] },
+    { name: "P2 quality wave", status: "Cimedia rebrand hardened", tone: "live", next: "Cimedia Rebrand passed source, build, production metadata, security headers, mobile layout, runtime, and CTA handoff checks. Continue the remaining P2 queue; return to inactive Vercel project records after the wave.", links: [{ label: "Open catalog", href: "https://youtube-subscription-catalog.vercel.app/" }, { label: "Open market research", href: "https://cathedralimage-market-research.vercel.app/" }, { label: "Open Cimedia Rebrand", href: "https://cimedia-rebrand.vercel.app/" }] },
     { name: "New ideas", status: "Open runway", tone: "planned", next: "Capture ideas in the pipeline, then advance only the ones with a clear user, evidence, V1, and revenue or strategic case.", links: [{ label: "Idea lab", href: "https://idea-forge-wheat.vercel.app/" }] }
   ]
 });
